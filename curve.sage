@@ -16,12 +16,12 @@ sph_plot = spher.plot(chart=cartesian, mapping=Phi, number_values=11,color='grey
 S = S2((0, 0), chart=stereoN, name='S')
 R.<t> = RealLine() 
 var('gg')
-ind=[0,1,2,3,4,5,6,7,8]
-c=[0,1,2,3,4,5,6,7,8]
-c_plot=[0,1,2,3,4,5,6,7,8]
+ind=[1,2,3,4,5,6,7,8,9,10]
+c=[0,1,2,3,4,5,6,7,8,9]
+c_plot=[0,1,2,3,4,5,6,7,8,9]
 for j in ind:
-    c[j] = S2.curve({spher: [2*atan(exp(-t/10)), t]}, (t, 30-5*j, 50), name='c')
-    c[j].plot(chart=stereoN, aspect_ratio=1, prange=(-20, 8), plot_points=200,color='blue', thickness=2)
-    c_plot[j] = c[j].plot(chart=cartesian, mapping=Phi, max_range=40, plot_points=400,thickness=3) + sph_plot
+    c[j-1] = S2.curve({spher: [2*atan(exp(-t/10)), t]}, (t, -oo, +oo), name='c')
+    c[j-1].plot(chart=stereoN, aspect_ratio=1, prange=(-20, 8), plot_points=200,color='blue', thickness=2)
+    c_plot[j-1] = c[j-1].plot(chart=cartesian, mapping=Phi, max_range=j, plot_points=200,thickness=3) + sph_plot
 a = animate(c_plot,figsize=10)
 a.show(delay=300, iterations=0)
